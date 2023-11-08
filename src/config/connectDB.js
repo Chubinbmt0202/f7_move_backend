@@ -1,4 +1,4 @@
-const { Sequelize } = require("sequelize");
+const Sequelize = require("sequelize");
 
 const sequelize = new Sequelize(
     process.env.DB_NAME,
@@ -7,15 +7,20 @@ const sequelize = new Sequelize(
     {
         host: process.env.DB_HOST,
         dialect: "postgres",
-        logging: false,
+        dialectModule: require("pg"),
+        dialectOptions: {
+            ssl: true,
+        },
     }
 );
-let connectDB = async () => {
-    try {
-        await sequelize.authenticate();
+
+sequelize
+    .authenticate()
+    .then(() => {
         console.log("Connection has been established successfully.");
-    } catch (error) {
-        console.error("Unable to connect to the database:", error);
-    }
-};
-export default connectDB;
+    })
+    .catch((error) => {
+        console.error("Unable to connect to the database: ", error);
+    });
+
+module.exports = sequelize;
