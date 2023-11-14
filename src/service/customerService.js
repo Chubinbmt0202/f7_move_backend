@@ -12,7 +12,7 @@ const generateNumericOTP = (length) => {
 };
 const sendOTP = async (phone, otp) => {
     const accountSid = "ACd1e0a8aea3299d117f551ecd3c140874";
-    const authToken = "932fe839a10287b4a6095a3ee6352073";
+    const authToken = "e54dfcdfad8946d101c496f2bbd47230";
     const client = twilio(accountSid, authToken);
 
     try {
@@ -38,9 +38,9 @@ const handleLoginService = async (data) => {
             const otpSent = await sendOTP(data.phone, otp);
             if (otpSent) {
                 return {
-                    EM: "OK",
+                    EM: "Sending OTP success",
                     EC: 0,
-                    DT: "",
+                    DT: { otp },
                 };
             } else {
                 return {
@@ -60,10 +60,26 @@ const handleLoginService = async (data) => {
         return {
             EM: "Something wrong in service...",
             EC: -2,
+            DT: "",
+        };
+    }
+};
+
+const handleRegisterService = async (data) => {
+    try {
+        let user = await db.Customer.findOne({
+            where: { phone: data.phone },
+        });
+    } catch (e) {
+        return {
+            EM: "Something wrong in service...",
+            EC: -2,
+            DT: "",
         };
     }
 };
 
 module.exports = {
     handleLoginService,
+    handleRegisterService,
 };

@@ -3,11 +3,28 @@ import configViewEngine from "./config/viewEngine";
 import initApiRoutes from "./routes/api";
 import bodyParser from "body-parser";
 // import connectDB from "./config/connectDB";
+// import cors from "cors";
 require("dotenv").config();
 const app = express();
 const PORT = process.env.PORT || 8080;
 
+// app.use(function (req, res, next) {
+//     res.setHeader("Access-Control-Allow-Origin", "http://192.168.1.57:8081");
+//     res.setHeader(
+//         "Access-Control-Allow-Methods",
+//         "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+//     );
+//     res.setHeader(
+//         "Access-Control-Allow-Headers",
+//         "X-Requested-With,content-type"
+//     );
+//     res.setHeader("Access-Control-Allow-Credentials", true);
+//     next();
+// });
+
+// app.use(cors());
 configViewEngine(app);
+
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 
