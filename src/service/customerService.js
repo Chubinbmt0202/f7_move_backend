@@ -12,7 +12,7 @@ const generateNumericOTP = (length) => {
 };
 const sendOTP = async (phone, otp) => {
     const accountSid = "ACd1e0a8aea3299d117f551ecd3c140874";
-    const authToken = "932fe839a10287b4a6095a3ee6352073";
+    const authToken = "e54dfcdfad8946d101c496f2bbd47230";
     const client = twilio(accountSid, authToken);
 
     try {
@@ -33,9 +33,11 @@ const handleLoginService = async (data) => {
         let user = await db.Customer.findOne({
             where: { phone: data.phone },
         });
+        console.log("123")
         if (user) {
             const otp = generateNumericOTP(6);
             const otpSent = await sendOTP(data.phone, otp);
+            console.log("otp", otp)
             if (otpSent) {
                 return {
                     EM: "OK",

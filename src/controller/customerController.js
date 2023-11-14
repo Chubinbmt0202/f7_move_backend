@@ -18,6 +18,11 @@ const handleLogin = async (req, res) => {
     }
 };
 
+const getCRUD = (req, res) => {
+    return res.render('test')
+}
+
 module.exports = {
     handleLogin,
+    getCRUD,
 };
