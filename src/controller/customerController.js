@@ -24,7 +24,7 @@ const handleRegister = async (req, res) => {
         return res.status(200).json({
             EM: data.EM,
             EC: data.EC,
-            DT: data.DT,
+            DT: "",
         });
     } catch (e) {
         console.log(e);

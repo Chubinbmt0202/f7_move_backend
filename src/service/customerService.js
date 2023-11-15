@@ -1,57 +1,34 @@
 import db from "../models/index";
-const otpGenerator = require("otp-generator");
-import twilio from "twilio";
 
-const generateNumericOTP = (length) => {
-    const digits = "0123456789";
-    let OTP = "";
-    for (let i = 0; i < length; i++) {
-        OTP += digits[Math.floor(Math.random() * 10)];
-    }
-    return OTP;
-};
-const sendOTP = async (phone, otp) => {
-    const accountSid = "ACd1e0a8aea3299d117f551ecd3c140874";
-    const authToken = "e54dfcdfad8946d101c496f2bbd47230";
-    const client = twilio(accountSid, authToken);
+import bcrypt, { hash } from "bcryptjs";
 
-    try {
-        const message = await client.messages.create({
-            body: `Your OTP is: ${otp}`,
-            from: "+19167643467",
-            to: `+${phone}`,
-        });
-        console.log(message.sid);
-        return true;
-    } catch (error) {
-        console.error(error);
-        return false;
-    }
-};
+// const salt = bcrypt.genSaltSync(10);
+
+// let hashUserPassword = (userPassword) => {
+//     let hashPassword = bcrypt.hashSync(userPassword, salt);
+//     return hashPassword;
+// };
+
+// const checkPassword = (inputPassword, hashPassword) => {
+//     return bcrypt.compareSync(inputPassword, hashPassword);
+// };
+
 const handleLoginService = async (data) => {
     try {
         let user = await db.Customer.findOne({
-            where: { phone: data.phone },
+            where: { userName: data.userName, password: data.password },
         });
         if (user) {
-            const otp = generateNumericOTP(6);
-            const otpSent = await sendOTP(data.phone, otp);
-            if (otpSent) {
+            if (user && user.password === data.password) {
                 return {
-                    EM: "Sending OTP success",
+                    EM: "Ok",
                     EC: 0,
-                    DT: { otp },
-                };
-            } else {
-                return {
-                    EM: "Error sending OTP",
-                    EC: -3,
                     DT: "",
                 };
             }
         }
         return {
-            EM: "phone is incorrect!",
+            EM: "Your UserName or password is incorrect!",
             EC: 1,
             DT: "",
         };
@@ -65,20 +42,45 @@ const handleLoginService = async (data) => {
     }
 };
 
+const checkUserName = async (userName) => {
+    let user = await db.Customer.findOne({
+        where: { userName: userName },
+    });
+    if (user) {
+        return true;
+    }
+    return false;
+};
+
 const handleRegisterService = async (data) => {
     try {
-        let user = await db.Customer.findOne({
-            where: { phone: data.phone },
+        let isUserNameExist = await checkUserName(data.userName);
+        if (isUserNameExist === true) {
+            return {
+                EM: "The UserName is already exist",
+                EC: 1,
+            };
+        }
+
+        await db.Customer.create({
+            userName: data.userName,
+            password: data.password,
+            email: data.email,
+            fullName: data.fullName,
+            phone: data.phone,
         });
-    } catch (e) {
+        return {
+            EM: "A user is created successfully",
+            EC: 0,
+        };
+    } catch (error) {
+        console.log(e);
         return {
             EM: "Something wrong in service...",
             EC: -2,
-            DT: "",
         };
     }
 };
-
 module.exports = {
     handleLoginService,
     handleRegisterService,
