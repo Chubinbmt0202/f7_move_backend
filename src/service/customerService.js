@@ -1,18 +1,5 @@
 import db from "../models/index";
 
-import bcrypt, { hash } from "bcryptjs";
-
-// const salt = bcrypt.genSaltSync(10);
-
-// let hashUserPassword = (userPassword) => {
-//     let hashPassword = bcrypt.hashSync(userPassword, salt);
-//     return hashPassword;
-// };
-
-// const checkPassword = (inputPassword, hashPassword) => {
-//     return bcrypt.compareSync(inputPassword, hashPassword);
-// };
-
 const handleLoginService = async (data) => {
     try {
         let user = await db.Customer.findOne({
@@ -63,10 +50,10 @@ const handleRegisterService = async (data) => {
         }
 
         await db.Customer.create({
-            userName: data.userName,
-            password: data.password,
             email: data.email,
             fullName: data.fullName,
+            password: data.password,
+            userName: data.userName,
             phone: data.phone,
         });
         return {
