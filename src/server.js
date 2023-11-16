@@ -3,9 +3,11 @@ import configViewEngine from "./config/viewEngine";
 import initApiRoutes from "./routes/api";
 import bodyParser from "body-parser";
 
+const cors = require("cors");
 require("dotenv").config();
 const app = express();
 const PORT = process.env.PORT || 8080;
+app.use(cors());
 
 configViewEngine(app);
 
@@ -16,5 +18,5 @@ initApiRoutes(app);
 // connectDB();
 
 app.listen(PORT, () => {
-    console.log("Backend is running on the port: " + PORT);
+  console.log("Backend is running on the port: " + PORT);
 });
