@@ -68,7 +68,25 @@ const handleRegisterService = async (data) => {
         };
     }
 };
+
+const handlePostForm = async (data) => {
+    try {
+        await db.Requires.create({
+            fullName: data.fullName,
+            phoneNumber: data.phoneNumber,
+            statusDescription: data.statusDescription,
+            licensePlate: data.licensePlate,
+            licensePlate: data.licensePlate,
+            carBrand: data.carBrand,
+            carColor: data.carColor,
+            carType: data.carType
+        });
+    } catch (error) {
+        console.log(e);
+    }
+};
 module.exports = {
     handleLoginService,
     handleRegisterService,
+    handlePostForm
 };

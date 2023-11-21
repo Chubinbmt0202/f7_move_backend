@@ -36,6 +36,7 @@ const handleRegister = async (req, res) => {
     }
 };
 
+
 module.exports = {
     handleLogin,
     handleRegister,

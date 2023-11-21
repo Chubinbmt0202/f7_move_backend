@@ -22,6 +22,7 @@ const initApiRoutes = (app) => {
         partnerControllers.handleRegisterPartner
     );
 
+
     return app.use("/", router);
 };
 
