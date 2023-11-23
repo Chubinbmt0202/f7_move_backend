@@ -1,6 +1,6 @@
 {
-  "development": {
-    "username": "f7_move_db_user",
+    "development": {
+        "username": "f7_move_db_user",
         "password": "NVLnEjSqhkT28RiGp29gbbBznpVstDvq",
         "database": "f7_move_db",
         "host": "dpg-ck8ps1vq54js73d4u6pg-a.oregon-postgres.render.com",
@@ -12,19 +12,26 @@
                 "rejectUnauthorized": false
             }
         }
-  },
-  "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  },
-  "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  }
+    },
+    "test": {
+        "username": "root",
+        "password": null,
+        "database": "database_test",
+        "host": "127.0.0.1",
+        "dialect": "mysql"
+    },
+    "production": {
+        "username": "f7_move_db_user",
+        "password": "NVLnEjSqhkT28RiGp29gbbBznpVstDvq",
+        "database": "f7_move_db",
+        "host": "dpg-ck8ps1vq54js73d4u6pg-a.oregon-postgres.render.com",
+        "dialect": "postgres",
+        "ssl": true,
+        "dialectOptions": {
+            "ssl": {
+                "require": true,
+                "rejectUnauthorized": false
+            }
+        }
+    }
 }
