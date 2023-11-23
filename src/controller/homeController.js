@@ -1,10 +1,6 @@
 import db from '../models/index';
 import homeService from '../service/homeService';
 
-const showLogin = async (req, res) => {
-    return res.render('login/login');
-};
-
 const ShowDataDrop = async (req, res) => {
     try {
         let data = await homeService.handleShow(req.body);
@@ -44,7 +40,6 @@ const sendHelp = async (req, res) => {
 };
 
 module.exports = {
-    showLogin,
     ShowDataDrop,
     ShowDataDropType,
     ShowDataDropColor,
