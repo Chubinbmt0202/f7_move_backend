@@ -1,9 +1,9 @@
 import express from 'express';
-import configViewEngine from './config/viewEngine';
-import initApiRoutes from './routes/api';
+import configViewEngine from './src/config/viewEngine';
+import initApiRoutes from './src/routes/api';
 import bodyParser from 'body-parser';
 const http = require('http');
-const webSocket = require('./until/webSocket');
+const webSocket = require('./src/until/webSocket');
 
 require('dotenv').config();
 const app = express();
