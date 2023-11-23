@@ -1,8 +1,8 @@
-import db from "../models/index";
-import homeService from "../service/homeService";
+import db from '../models/index';
+import homeService from '../service/homeService';
 
 const showLogin = async (req, res) => {
-    return res.render("login/login");
+    return res.render('login/login');
 };
 
 const ShowDataDrop = async (req, res) => {
@@ -33,13 +33,13 @@ const ShowDataDropColor = async (req, res) => {
 };
 
 const sendHelp = async (req, res) => {
-    console.log("Request Body:", req.body); // Log the request body
+    console.log('Request Body:', req.body); // Log the request body
     try {
         let data = await homeService.handlePostHelp(req.body);
         return res.status(201).json(data);
     } catch (e) {
         console.error(e);
-        return res.status(500).json({ error: "Internal Server Error" });
+        return res.status(500).json({ error: 'Internal Server Error' });
     }
 };
 
