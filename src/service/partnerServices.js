@@ -81,6 +81,8 @@ const getAllServices = async () => {
                     attributes: ["nameServiceDetail", "price"],
                 },
             ],
+            raw: true,
+            nest: true,
         });
         if (data) {
             return {
