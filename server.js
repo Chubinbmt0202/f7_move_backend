@@ -1,5 +1,4 @@
 import express from 'express';
-import configViewEngine from './src/config/viewEngine';
 import initApiRoutes from './src/routes/api';
 import bodyParser from 'body-parser';
 const http = require('http');
@@ -11,8 +10,6 @@ const PORT = process.env.PORT || 8080;
 
 const server = http.createServer(app);
 webSocket(server);
-
-configViewEngine(app);
 
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
