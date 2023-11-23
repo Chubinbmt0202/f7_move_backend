@@ -25,6 +25,10 @@ server.listen(WEB_SOCKET_PORT, () => {
     console.log(`WebSocket server listening on port ${WEB_SOCKET_PORT}`);
 });
 
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+});
+
 app.listen(PORT, () => {
     console.log('Backend is running on the port: ' + PORT);
 });
