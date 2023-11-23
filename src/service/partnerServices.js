@@ -71,4 +71,35 @@ const handleRegisterPartnerService = async (data) => {
     }
 };
 
-module.exports = { handleLoginPartnerService, handleRegisterPartnerService };
+const getAllServices = async () => {
+    try {
+        let data = await db.Service.findAll({
+            attributes: ["id", "nameService"],
+            include: [
+                {
+                    model: db.detailService,
+                    attributes: ["nameServiceDetail", "price"],
+                },
+            ],
+        });
+        if (data) {
+            return {
+                EM: "Ok",
+                EC: 0,
+                DT: data,
+            };
+        }
+    } catch (error) {
+        console.log(error);
+        return {
+            EM: "Something wrong in service...",
+            EC: -2,
+        };
+    }
+};
+
+module.exports = {
+    handleLoginPartnerService,
+    handleRegisterPartnerService,
+    getAllServices,
+};

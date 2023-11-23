@@ -57,4 +57,21 @@ const handleRegisterPartner = async (req, res) => {
     }
 };
 
-module.exports = { handleLoginPartner, handleRegisterPartner };
+const getAllServices = async (req, res) => {
+    try {
+        let data = await partnerServices.getAllServices();
+        return res.status(200).json({
+            EM: data.EM,
+            EC: data.EC,
+            DT: data.DT,
+        });
+    } catch (e) {
+        console.log(e);
+        return res.status(500).json({
+            EM: "error from server", // error message
+            EC: "-1", // error code
+            DT: "", // data
+        });
+    }
+};
+module.exports = { handleLoginPartner, handleRegisterPartner, getAllServices };

@@ -22,6 +22,8 @@ const initApiRoutes = (app) => {
         partnerControllers.handleRegisterPartner
     );
 
+    router.get("/api/get-all-services", partnerControllers.getAllServices);
+
     return app.use("/", router);
 };
 
