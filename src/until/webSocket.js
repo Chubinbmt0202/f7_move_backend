@@ -58,6 +58,13 @@ function webSocket(server) {
             }
         });
 
+        socket.on('cancel_help', (data) => {
+            if (data) {
+                console.log('>>>Check data cancel help: ', data);
+                io.emit('customer_cancel_help', data);
+            }
+        });
+
         socket.on('disconnect', () => {
             console.log('A client disconnected');
         });
