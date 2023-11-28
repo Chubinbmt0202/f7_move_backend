@@ -74,4 +74,41 @@ const getAllServices = async (req, res) => {
         });
     }
 };
-module.exports = { handleLoginPartner, handleRegisterPartner, getAllServices };
+
+const handleSaveRescueRequirePartner = async (req, res) => {
+    const nameCustomer = req.body.nameCustomer;
+    const namePartner = req.body.namePartner;
+    const reason = req.body.reason;
+
+    if (!nameCustomer || !namePartner || !reason) {
+        return res.status(500).json({
+            EM: "Missing parameter", // error message
+            EC: "-1", // error code
+            DT: "", // data
+        });
+    } else {
+        try {
+            let data = await partnerServices.handleSaveRescueRequireService(
+                req.body
+            );
+            return res.status(200).json({
+                EM: data.EM,
+                EC: data.EC,
+                DT: "",
+            });
+        } catch (e) {
+            console.log(e);
+            return res.status(500).json({
+                EM: "error from server", // error message
+                EC: "-1", // error code
+                DT: "", // data
+            });
+        }
+    }
+};
+module.exports = {
+    handleLoginPartner,
+    handleRegisterPartner,
+    getAllServices,
+    handleSaveRescueRequirePartner,
+};

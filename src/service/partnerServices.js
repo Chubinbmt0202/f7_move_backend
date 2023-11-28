@@ -99,9 +99,36 @@ const getAllServices = async () => {
         };
     }
 };
+const handleSaveRescueRequireService = async (data) => {
+    if (!data.nameCustomer || !data.namePartner || !data.reason) {
+        return res.status(500).json({
+            EM: "Missing parameter", // error message
+            EC: "-1", // error code
+            DT: "", // data
+        });
+    }
 
+    try {
+        await db.Requirement.create({
+            nameCustomer: data.nameCustomer,
+            namePartner: data.namePartner,
+            reason: data.reason,
+        });
+        return {
+            EM: "A new rescue require saved!",
+            EC: 0,
+        };
+    } catch (error) {
+        console.log(error);
+        return {
+            EM: "Something wrong in service...",
+            EC: -2,
+        };
+    }
+};
 module.exports = {
     handleLoginPartnerService,
     handleRegisterPartnerService,
     getAllServices,
+    handleSaveRescueRequireService,
 };

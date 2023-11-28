@@ -23,6 +23,10 @@ const initApiRoutes = (app) => {
     );
 
     router.get("/api/get-all-services", partnerControllers.getAllServices);
+    router.post(
+        "/api/save-rescue-require-partner",
+        partnerControllers.handleSaveRescueRequirePartner
+    );
 
     return app.use("/", router);
 };

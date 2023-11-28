@@ -9,9 +9,7 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
-            Requirement.belongsTo(models.Customer);
-            Requirement.belongsTo(models.Car);
-            Requirement.belongsTo(models.Partner, { foreignKey: "partnerId" });
+
             Requirement.hasOne(models.Invoice, { foreignKey: "requireId" });
         }
     }
