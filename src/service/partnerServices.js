@@ -78,17 +78,38 @@ const getAllServices = async () => {
             include: [
                 {
                     model: db.detailService,
-                    attributes: ["nameServiceDetail", "price"],
+                    attributes: ["id", "nameServiceDetail", "price"],
                 },
             ],
             raw: true,
             nest: true,
         });
+
         if (data) {
+            // Tạo một đối tượng Map để nhóm dữ liệu theo id
+            let groupedData = new Map();
+
+            // Duyệt qua dữ liệu và nhóm theo id
+            data.forEach((service) => {
+                const { id, nameService, "detailServices.id": detailId, ...details } = service;
+
+                if (!groupedData.has(id)) {
+                    groupedData.set(id, {
+                        id,
+                        nameService,
+                        details: [{ detailId, ...details }],
+                    });
+                } else {
+                    groupedData.get(id).details.push({ detailId, ...details });
+                }
+            });
+
+            const result = Array.from(groupedData.values());
+
             return {
                 EM: "Ok",
                 EC: 0,
-                DT: data,
+                DT: result,
             };
         }
     } catch (error) {
@@ -99,6 +120,10 @@ const getAllServices = async () => {
         };
     }
 };
+
+
+
+
 
 module.exports = {
     handleLoginPartnerService,
