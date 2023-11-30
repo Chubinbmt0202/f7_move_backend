@@ -15,10 +15,12 @@ module.exports = (sequelize, DataTypes) => {
     }
     Requirement.init(
         {
-            nameCustomer: DataTypes.STRING,
-            namePartner: DataTypes.STRING,
+            customerId: DataTypes.STRING,
+            partnerId: DataTypes.STRING,
             orderTime: DataTypes.DATE,
+            status: DataTypes.STRING,
             reason: DataTypes.STRING,
+            carId: DataTypes.STRING,
         },
         {
             sequelize,
