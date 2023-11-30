@@ -6,7 +6,6 @@ const router = express.Router();
 
 const initApiRoutes = (app) => {
     // render login page
-    router.get('/', homeController.showLogin);
     router.get('/api/getAllBrandCar', homeController.getAllBrandCar); //done
     router.get('/api/getAllTypeCar', homeController.getAllTypeCar); //done
     router.get('/api/getAllColorCar', homeController.getAllColorCar); //done

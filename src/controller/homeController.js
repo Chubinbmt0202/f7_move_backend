@@ -67,7 +67,6 @@ const sendHelp = async (req, res) => {
 };
 
 module.exports = {
-    showLogin,
     getAllBrandCar,
     getAllTypeCar,
     getAllColorCar,
