@@ -9,20 +9,16 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
-            Requirement.belongsTo(models.Customer);
-            Requirement.belongsTo(models.Car);
-            Requirement.belongsTo(models.Partner, { foreignKey: "partnerId" });
+
             Requirement.hasOne(models.Invoice, { foreignKey: "requireId" });
         }
     }
     Requirement.init(
         {
-            customerId: DataTypes.STRING,
-            partnerId: DataTypes.STRING,
+            nameCustomer: DataTypes.STRING,
+            namePartner: DataTypes.STRING,
             orderTime: DataTypes.DATE,
-            status: DataTypes.STRING,
             reason: DataTypes.STRING,
-            carId: DataTypes.STRING,
         },
         {
             sequelize,

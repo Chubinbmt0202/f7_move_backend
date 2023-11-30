@@ -6,10 +6,10 @@ const router = express.Router();
 
 const initApiRoutes = (app) => {
     // render login page
-    // router.get("/", homeController.showLogin);
-    router.get('/getAllBrandCar', homeController.ShowDataDrop); //done
-    router.get('/getAllTypeCar', homeController.ShowDataDropType); //done
-    router.get('/getAllColorCar', homeController.ShowDataDropColor); //done
+    router.get('/', homeController.showLogin);
+    router.get('/api/getAllBrandCar', homeController.getAllBrandCar); //done
+    router.get('/api/getAllTypeCar', homeController.getAllTypeCar); //done
+    router.get('/api/getAllColorCar', homeController.getAllColorCar); //done
 
     app.post('/sendHelp', homeController.sendHelp);
 
@@ -18,6 +18,9 @@ const initApiRoutes = (app) => {
 
     router.post('/api/login-partner', partnerControllers.handleLoginPartner);
     router.post('/api/register-partner', partnerControllers.handleRegisterPartner);
+
+    router.get('/api/get-all-services', partnerControllers.getAllServices);
+    router.post('/api/save-rescue-require-partner', partnerControllers.handleSaveRescueRequirePartner);
 
     return app.use('/', router);
 };

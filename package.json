@@ -1,32 +1,31 @@
 {
-    "name": "f7_move_backend",
-    "version": "1.0.0",
-    "description": "f7Move Backend",
-    "main": "server.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "nodemon --exec babel-node server.js"
-    },
-    "author": "F7",
-    "license": "ISC",
-    "dependencies": {
-        "@babel/core": "7.23.2",
-        "@babel/node": "7.22.19",
-        "@babel/preset-env": "7.23.2",
-        "axios": "^1.6.2",
-        "bcryptjs": "^2.4.3",
-        "body-parser": "1.20.2",
-        "cors": "^2.8.5",
-        "dotenv": "16.3.1",
-        "ejs": "^3.1.9",
-        "express": "4.18.2",
-        "http": "^0.0.1-security",
-        "nodemon": "3.0.1",
-        "otp-generator": "^4.0.1",
-        "pg": "8.11.3",
-        "sequelize": "6.13.0",
-        "sequelize-cli": "6.3.0",
-        "socket.io": "^4.7.2",
-        "twilio": "^4.19.0"
-    }
+  "name": "f7_move_backend",
+  "version": "1.0.0",
+  "description": "f7Move Backend",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --exec babel-node src/server.js"
+  },
+  "author": "F7",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "7.23.2",
+    "@babel/node": "7.22.19",
+    "@babel/preset-env": "7.23.2",
+    "axios": "^1.6.2",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "16.3.1",
+    "express": "4.18.2",
+    "http": "0.0.1-security",
+    "nodemon": "3.0.1",
+    "otp-generator": "^4.0.1",
+    "pg": "8.11.3",
+    "sequelize": "6.13.0",
+    "sequelize-cli": "6.3.0",
+    "socket.io": "^4.7.2",
+    "twilio": "^4.19.0"
+  }
 }

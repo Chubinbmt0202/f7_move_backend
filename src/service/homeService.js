@@ -1,30 +1,63 @@
 import db from "../models/index";
 
-const handleShow = async () => {
+const getAllBrandCar = async () => {
     try {
-        let user = await db.BranchCar.findAll();
-        console.log(user);
-        return user;
-    } catch (e) {
-        console.log(e);
+        let data = await db.Brand.findAll({
+            attributes: ["id", "Name"],
+        });
+        if (data) {
+            return {
+                EM: "Ok",
+                EC: 0,
+                DT: data,
+            };
+        }
+    } catch (error) {
+        console.log(error);
+        return {
+            EM: "Something wrong in service...",
+            EC: -2,
+        };
     }
 };
-const handleShowType = async () => {
+const getAllTypeCar = async () => {
     try {
-        let type = await db.Type.findAll();
-        console.log(type);
-        return type;
-    } catch (e) {
-        console.log(e);
+        let data = await db.Type.findAll({
+            attributes: ["id", "Name"],
+        });
+        if (data) {
+            return {
+                EM: "Ok",
+                EC: 0,
+                DT: data,
+            };
+        }
+    } catch (error) {
+        console.log(error);
+        return {
+            EM: "Something wrong in service...",
+            EC: -2,
+        };
     }
 };
-const handleShowColor = async () => {
+const getAllColorCar = async () => {
     try {
-        let color = await db.ColorCar.findAll();
-        console.log(color);
-        return color;
-    } catch (e) {
-        console.log(e);
+        let data = await db.Color.findAll({
+            attributes: ["id", "Name"],
+        });
+        if (data) {
+            return {
+                EM: "Ok",
+                EC: 0,
+                DT: data,
+            };
+        }
+    } catch (error) {
+        console.log(error);
+        return {
+            EM: "Something wrong in service...",
+            EC: -2,
+        };
     }
 };
 
@@ -52,8 +85,8 @@ const handlePostHelp = async (data) => {
 };
 
 module.exports = {
-    handleShow,
-    handleShowType,
-    handleShowColor,
+    getAllBrandCar,
+    getAllTypeCar,
+    getAllColorCar,
     handlePostHelp,
 };

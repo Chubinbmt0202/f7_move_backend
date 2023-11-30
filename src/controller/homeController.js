@@ -1,30 +1,57 @@
 import db from '../models/index';
 import homeService from '../service/homeService';
 
-const ShowDataDrop = async (req, res) => {
+const getAllBrandCar = async (req, res) => {
     try {
-        let data = await homeService.handleShow(req.body);
-        return res.status(200).json(data);
+        let data = await homeService.getAllBrandCar();
+        return res.status(200).json({
+            EM: data.EM,
+            EC: data.EC,
+            DT: data.DT,
+        });
     } catch (e) {
         console.log(e);
+        return res.status(500).json({
+            EM: 'error from server', // error message
+            EC: '-1', // error code
+            DT: '', // data
+        });
     }
 };
 
-const ShowDataDropType = async (req, res) => {
+const getAllTypeCar = async (req, res) => {
     try {
-        let data = await homeService.handleShowType(req.body);
-        return res.status(200).json(data);
+        let data = await homeService.getAllTypeCar();
+        return res.status(200).json({
+            EM: data.EM,
+            EC: data.EC,
+            DT: data.DT,
+        });
     } catch (e) {
         console.log(e);
+        return res.status(500).json({
+            EM: 'error from server', // error message
+            EC: '-1', // error code
+            DT: '', // data
+        });
     }
 };
 
-const ShowDataDropColor = async (req, res) => {
+const getAllColorCar = async (req, res) => {
     try {
-        let data = await homeService.handleShowColor(req.body);
-        return res.status(200).json(data);
+        let data = await homeService.getAllColorCar();
+        return res.status(200).json({
+            EM: data.EM,
+            EC: data.EC,
+            DT: data.DT,
+        });
     } catch (e) {
         console.log(e);
+        return res.status(500).json({
+            EM: 'error from server', // error message
+            EC: '-1', // error code
+            DT: '', // data
+        });
     }
 };
 
@@ -40,8 +67,9 @@ const sendHelp = async (req, res) => {
 };
 
 module.exports = {
-    ShowDataDrop,
-    ShowDataDropType,
-    ShowDataDropColor,
+    showLogin,
+    getAllBrandCar,
+    getAllTypeCar,
+    getAllColorCar,
     sendHelp,
 };
